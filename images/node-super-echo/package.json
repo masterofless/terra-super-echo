@@ -1,0 +1,19 @@
+{
+  "name": "super-echo",
+  "version": "1.0.0",
+  "description": "Superbly echoes your data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "superb",
+    "echo"
+  ],
+  "author": "Andy Cohan",
+  "license": "ISC",
+  "dependencies": {
+    "ronin-mocks": "^0.1.6",
+    "ronin-server": "^0.1.3"
+  }
+}

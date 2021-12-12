@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "terra-super-echo.fullname" . }}-beforfe
+  labels:
+    {{- include "terra-super-echo.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.beforfe.service.type }}
+  ports:
+    - port: {{ .Values.beforfe.service.port }}
+      targetPort: 8000
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "terra-super-echo.selectorLabels" . | nindent 4 }}
+    app: beforfe
