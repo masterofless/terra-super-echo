@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "terra-super-echo.fullname" . }}-nginx
+  name: {{ include "terra-super-echo.fullname" . }}-go
   labels:
     {{- include "terra-super-echo.labels" . | nindent 4 }}
 spec:
@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       {{- include "terra-super-echo.selectorLabels" . | nindent 6 }}
-      app: webui
+      app: yodeler
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
       {{- end }}
       labels:
         {{- include "terra-super-echo.selectorLabels" . | nindent 8 }}
-        app: webui
+        app: yodeler
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -28,14 +28,14 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}-nginx
+        - name: {{ .Chart.Name }}-go
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.go.image.repository }}:{{ .Values.go.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.nginx.deployment.port }}
+              containerPort: {{ .Values.go.deployment.port }}
               protocol: TCP
           livenessProbe:
             httpGet:

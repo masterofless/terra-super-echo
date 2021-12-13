@@ -8,11 +8,22 @@ nginx:
   image:
     repository: nginx
     tag: "latest"
+  deployment:
+    port: 80
 
 node:
   image:
     repository: node-super-echo
     tag: "latest"
+  deployment:
+    port: 8000
+
+go:
+  image:
+    repository: go-super-echo
+    tag: "latest"
+  deployment:
+    port: 8080
 
 image:
   pullPolicy: IfNotPresent
@@ -52,6 +63,11 @@ beforfe:
   service:
     type: ClusterIP
     port: 8001
+
+yodeler:
+  service:
+    type: ClusterIP
+    port: 8002
 
 ingress:
   enabled: false
