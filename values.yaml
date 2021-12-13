@@ -6,7 +6,7 @@ replicaCount: 1
 
 nginx:
   image:
-    repository: nginx
+    repository: nginx-super-echo
     tag: "latest"
   deployment:
     port: 80
