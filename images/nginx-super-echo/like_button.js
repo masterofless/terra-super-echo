@@ -4,26 +4,32 @@ class LikeButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = { liked: false };
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  render() {
-    if (this.state.liked) {
-      return <h3>You liked this.</h3>;
-    }
-
-    return <button onClick={this.enhance()}>Like Me</button>;
-  }
-
-  enhance() {
+  handleClick() {
+      this.setState({ liked: true });
+    /*
       fetch('http://jsonplaceholder.typicode.com/users')
         .then(res => res.json())
         .then((data) => {
-          this.setState({ liked: true });
+          this.setState({ liked: false });
         })
         .catch(console.log)
+        */
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.liked ? 'ON' : 'OFF'}
+      </button>
+    );
   }
 }
 
-const domContainer = document.querySelector('#like_button_container');
-const el = React.createElement(LikeButton)
-ReactDOM.render(el, domContainer);
+ReactDOM.render(
+  <LikeButton />,
+  document.querySelector('#like_button_container')
+);
