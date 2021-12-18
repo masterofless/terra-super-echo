@@ -1,7 +1,13 @@
-const ronin = require('ronin-server')
-const mocks = require('ronin-mocks')
+'use strict';
 
-const server = ronin.server()
+const express = require('express');
+const PORT = 8080;
+const HOST = '0.0.0.0';
 
-server.use('/', mocks.server(server.Router(), false, true))
-server.start()
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);

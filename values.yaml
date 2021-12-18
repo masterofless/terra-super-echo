@@ -16,7 +16,7 @@ node:
     repository: node-super-echo
     tag: "latest"
   deployment:
-    port: 8000
+    port: 8080
 
 go:
   image:

@@ -8,7 +8,7 @@ spec:
   type: {{ .Values.beforfe.service.type }}
   ports:
     - port: {{ .Values.beforfe.service.port }}
-      targetPort: 8000
+      targetPort: {{ .Values.node.deployment.port }}
       protocol: TCP
       name: http
   selector:
