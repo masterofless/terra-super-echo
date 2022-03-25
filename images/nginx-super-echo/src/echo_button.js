@@ -9,20 +9,21 @@ class LikeButton extends React.Component {
   }
 
   handleClick() {
-      this.setState({ });
-      fetch('http://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then((data) => {
-          this.setState({ utterances: data });
-        })
-        .catch(console.log)
+    this.setState({});
+    fetch('/beforfe/utterances')
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({ utterances: data.utterance });
+        console.log(this.state.utterances);
+      })
+      .catch(console.log)
   }
 
   render() {
     return (
       <div>
         <button onClick={this.handleClick}>Terra Super Echo!</button>
-        <p/>
+        <p />
         <label htmlFor="utterances">Tell us your sayings!</label>
         <textarea id="story" name="utterances" value={this.state.utterances} readOnly />
       </div>

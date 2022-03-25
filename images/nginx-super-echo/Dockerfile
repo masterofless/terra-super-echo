@@ -12,3 +12,4 @@ WORKDIR /usr/share/nginx/html
 
 COPY index.html /usr/share/nginx/html/index.html
 COPY --from=0 /app/*.js /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/conf.d/default.conf
