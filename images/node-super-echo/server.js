@@ -10,10 +10,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/utterance', (req, res) => {
-  var yodel = '';
   getUtterance(function(data) {
     const responseData = {
-      utterance: data.yodel
+      utterance: `To the yodel ${data.yodel} I, node, add great wisdom`
     }
     res.end(JSON.stringify(responseData));
   });

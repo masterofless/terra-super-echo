@@ -3,6 +3,7 @@ package main
 import (
     "fmt"
     "log"
+    "time"
     "net/http"
     "encoding/json"
 )
@@ -18,7 +19,9 @@ func main() {
     })
 
     http.HandleFunc("/yodel", func(w http.ResponseWriter, r *http.Request){
-        answer := &response1{Yodel: "Yodelay Hee Who!!!!!"}
+        t := time.Now()
+        s := fmt.Sprintf("Yodelay Hee Who from go at %s @ %v!!!!!", t.Format(time.Kitchen), t.Location())
+        answer := &response1{Yodel: s}
         json, _ := json.Marshal(answer)
         fmt.Fprintf(w, string(json))
     })
