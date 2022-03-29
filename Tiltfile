@@ -52,7 +52,11 @@ docker_build('node-super-echo', context='images/node-super-echo')
 #   More info: https://docs.tilt.dev/api.html#api.k8s_yaml
 #
 # k8s_yaml(['k8s/deployment.yaml', 'k8s/service.yaml'])
-k8s_yaml(helm('./'))
+k8s_yaml(helm('./', name='terra-super-echo'))
+
+k8s_resource('terra-super-echo-nginx', port_forwards='8000:80')
+k8s_resource('terra-super-echo-node', port_forwards='8001:8080')
+k8s_resource('terra-super-echo-go', port_forwards='8002:8080')
 
 # Customize a Kubernetes resource
 #   By default, Kubernetes resource names are automatically assigned
