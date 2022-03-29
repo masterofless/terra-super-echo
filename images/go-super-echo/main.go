@@ -2,34 +2,26 @@ package main
 
 import (
     "fmt"
-    "html"
     "log"
     "net/http"
-    "sync"
-    "strconv"
+    "encoding/json"
 )
 
-var counter int
-var mutex = &sync.Mutex{}
-
-func incrementCounter(w http.ResponseWriter, r *http.Request) {
-    mutex.Lock()
-    counter++
-    fmt.Fprintf(w, strconv.Itoa(counter))
-    mutex.Unlock()
+type response1 struct {
+    Yodel string `json:"yodel"`
 }
 
 func main() {
 
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintf(w, "Hello, %q, from Go!!", html.EscapeString(r.URL.Path))
+        fmt.Fprintf(w, "Hello from GO!!!")
     })
 
     http.HandleFunc("/yodel", func(w http.ResponseWriter, r *http.Request){
-        fmt.Fprintf(w, "Yodel-o-delay-hee-hoo from Go!")
+        answer := &response1{Yodel: "Yodelay Hee Who!!!!!"}
+        json, _ := json.Marshal(answer)
+        fmt.Fprintf(w, string(json))
     })
-
-    http.HandleFunc("/increment", incrementCounter)
 
     log.Fatal(http.ListenAndServe(":8080", nil))
 

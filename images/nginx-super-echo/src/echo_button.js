@@ -3,18 +3,18 @@
 class LikeButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { utterances: '' };
+    this.state = { utterance: '' };
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
     this.setState({});
-    fetch('/beforfe/utterances')
+    fetch('/beforfe/utterance')
       .then(res => res.json())
       .then((data) => {
-        this.setState({ utterances: data.utterance });
-        console.log(this.state.utterances);
+        this.setState({ utterance: data.utterance });
+        console.log(this.state.utterance);
       })
       .catch(console.log)
   }
@@ -24,8 +24,8 @@ class LikeButton extends React.Component {
       <div>
         <button onClick={this.handleClick}>Terra Super Echo!</button>
         <p />
-        <label htmlFor="utterances">Tell us your sayings!</label>
-        <textarea id="story" name="utterances" value={this.state.utterances} readOnly />
+        <label htmlFor="utterance">Tell us your sayings!</label>
+        <textarea id="story" name="utterance" value={this.state.utterance} readOnly />
       </div>
     );
   }
