@@ -54,7 +54,6 @@ docker_build('node-super-echo', context='images/node-super-echo')
 # k8s_yaml(['k8s/deployment.yaml', 'k8s/service.yaml'])
 k8s_yaml(helm('./'))
 
-
 # Customize a Kubernetes resource
 #   By default, Kubernetes resource names are automatically assigned
 #   based on objects in the YAML manifests, e.g. Deployment name.

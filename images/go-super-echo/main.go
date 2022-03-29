@@ -25,8 +25,8 @@ func main() {
         fmt.Fprintf(w, "Hello, %q, from Go!!", html.EscapeString(r.URL.Path))
     })
 
-    http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request){
-        fmt.Fprintf(w, "Hi from Go!")
+    http.HandleFunc("/yodel", func(w http.ResponseWriter, r *http.Request){
+        fmt.Fprintf(w, "Yodel-o-delay-hee-hoo from Go!")
     })
 
     http.HandleFunc("/increment", incrementCounter)
