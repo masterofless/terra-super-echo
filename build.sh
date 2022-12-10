@@ -11,4 +11,4 @@ do
     $builder build -t $TAG --namespace k8s.io $img
     set +x
 done
-$builder images
+$builder --namespace k8s.io images | grep terra
